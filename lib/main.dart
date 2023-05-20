@@ -52,6 +52,7 @@ class _HomeScreenState extends State<HomeScreen> {
             : Text(getCompanyName),
       ),
       body: ValueListenableBuilder<Box<Notes>>(
+        // Getting listenable function from hive_flutter pkg
         valueListenable: Hive.box<Notes>("notes").listenable(),
         builder: (context, value, child) {
           final listOfNote = value.values.toList();
@@ -186,6 +187,8 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   showMyDialog() async {
+    titleController.clear();
+    descriptionController.clear();
     return showDialog(
       context: context,
       builder: (context) {
