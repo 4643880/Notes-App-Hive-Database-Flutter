@@ -47,9 +47,7 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: getCompanyName == ""
-            ? const Text("Hive Database")
-            : Text(getCompanyName),
+        title: const Text("Hive Database")
       ),
       body: ValueListenableBuilder<Box<Notes>>(
         // Getting listenable function from hive_flutter pkg
@@ -187,8 +185,10 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   showMyDialog() async {
-    titleController.clear();
-    descriptionController.clear();
+    setState(() {
+      titleController.clear();
+      descriptionController.clear();      
+    });    
     return showDialog(
       context: context,
       builder: (context) {
